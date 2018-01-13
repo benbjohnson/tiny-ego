@@ -35,7 +35,7 @@ type WidgetFilter struct {
 
 type WidgetService interface {
 	FindWidget(ctx context.Context, id int) (*Widget, error)
-	FindWidgets(ctx context.Context, filter WidgetFilter) ([]*Widget, error)
+	FindWidgets(ctx context.Context, filter WidgetFilter, opt FindOptions) ([]*Widget, error)
 	CreateWidget(ctx context.Context, widget *Widget) error
 	UpdateWidget(ctx context.Context, id int, upd WidgetUpdate) (*Widget, error)
 }
