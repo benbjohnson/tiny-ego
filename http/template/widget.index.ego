@@ -1,0 +1,36 @@
+<%
+package template
+
+import (
+	"github.com/benbjohnson/tiny-ego"
+	"github.com/benbjohnson/tiny-ego/fmtutil"
+	. "github.com/benbjohnson/tiny-ego/http/component"
+)
+
+type WidgetIndexTemplate struct {
+	Widgets []*tinyego.Widget
+	Filter  tinyego.WidgetFilter
+}
+
+func (tmpl *WidgetIndexTemplate) Render(ctx context.Context, w io.Writer) {
+%>
+<ego:App Title="Widgets">
+	<ego:SearchBar>
+		<ego:SearchField Label="Keyword">
+			<input name="q" value="<%= fmtutil.FormatStringPtr(tmpl.Filter.Query) %>"/>
+		</ego:SearchField>
+
+		<ego:SearchField Label="Keyword">
+			<input name="q" value="<%= fmtutil.FormatStringPtr(tmpl.Filter.Query) %>"/>
+		</ego:SearchField>
+	</ego:SearchBar>
+
+	<% if len(tmpl.Widgets) == 0 { %>
+		<ego:Alert Style="info">
+			No widgets found.
+		</ego:Alert>
+	<% } else { %> 
+		<!-- TODO: Table -->
+	<% } %>
+</ego:App>
+<% } %>

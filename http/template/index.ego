@@ -1,0 +1,19 @@
+<%
+package template
+
+import (
+	. "github.com/benbjohnson/tiny-ego/http/component"
+)
+
+type IndexTemplate struct {}
+
+func (tmpl *IndexTemplate) Render(ctx context.Context, w io.Writer) {
+%>
+
+<ego:App Title="Home">
+	<p>
+		Hello and welcome to ACME Corp!
+	</p>
+</ego:App>
+
+<% } %>

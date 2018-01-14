@@ -1,0 +1,19 @@
+<%
+package template
+
+import (
+	. "github.com/benbjohnson/tiny-ego/http/component"
+)
+
+type ErrorTemplate struct {
+	Err error
+}
+
+func (tmpl *ErrorTemplate) Render(ctx context.Context, w io.Writer) {
+%>
+
+<ego:App Title="Home">
+	<ego:Error Err=tmpl.Err/>
+</ego:App>
+
+<% } %>

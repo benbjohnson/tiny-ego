@@ -1,0 +1,17 @@
+<%
+package component
+
+type Error struct {
+	Err error
+}
+
+func (c *Error) Render(ctx context.Context, w io.Writer) {
+%>
+
+<% if c.Err != nil { %>
+	<ego:Alert Style="danger">
+		<%= c.Err.Error() %>
+	</ego:Alert>
+<% } %>
+
+<% } %>
