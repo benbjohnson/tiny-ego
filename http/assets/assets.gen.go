@@ -83,7 +83,7 @@ func stylesMainCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "styles/main.css", size: 8466, mode: os.FileMode(420), modTime: time.Unix(1515890614, 0)}
+	info := bindataFileInfo{name: "styles/main.css", size: 8466, mode: os.FileMode(420), modTime: time.Unix(1519746512, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

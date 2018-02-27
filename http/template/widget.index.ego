@@ -3,7 +3,6 @@ package template
 
 import (
 	"github.com/benbjohnson/tiny-ego"
-	"github.com/benbjohnson/tiny-ego/fmtutil"
 	. "github.com/benbjohnson/tiny-ego/http/component"
 )
 
@@ -17,11 +16,11 @@ func (tmpl *WidgetIndexTemplate) Render(ctx context.Context, w io.Writer) {
 <ego:App Title="Widgets">
 	<ego:SearchBar>
 		<ego:SearchField Label="Keyword">
-			<input name="q" value="<%= fmtutil.FormatStringPtr(tmpl.Filter.Query) %>"/>
+			<input name="q" value="<%= formatStringPtr(tmpl.Filter.Query) %>"/>
 		</ego:SearchField>
 
 		<ego:SearchField Label="Keyword">
-			<input name="q" value="<%= fmtutil.FormatStringPtr(tmpl.Filter.Query) %>"/>
+			<input name="q" value="<%= formatStringPtr(tmpl.Filter.Query) %>"/>
 		</ego:SearchField>
 	</ego:SearchBar>
 

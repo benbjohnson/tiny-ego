@@ -34,21 +34,62 @@ func (h *Handler) handleWidgetIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) handleWidgetView(w http.ResponseWriter, r *http.Request) {
+	id, _ := strconv.Atoi(chi.URLParam("id"))
+	widget, err := h.WidgetService.FindWidget(r.Context(), id)
+	if err != nil {
+		Error(w, r, err)
+		return
+	}
 
+	tmpl := WidgetViewTemplate{Widgets: widget}
+	tmpl.Render(w, r)
 }
 
 func (h *Handler) handleWidgetNew(w http.ResponseWriter, r *http.Request) {
-
+	tmpl := WidgetEditTemplate{Widget: &tinyego.Widget{}}
+	tmpl.Render(w, r)
 }
 
 func (h *Handler) handleWidgetCreate(w http.ResponseWriter, r *http.Request) {
+	widget := &tinyego.Widget{}
+	widget.Name = r.PostFormValue("name")
+	widget.Size = r.PostFormValue("size")
 
+	err := h.WidgetService.CreateWidget(r.Context(), filter, tinyego.FindOptions{})
+	if err != nil {
+		tmpl := WidgetEditTemplate{Widget: &tinyego.Widget{}, Err: Err}
+		tmpl.Render(w, r)
+		return
+	}
+
+	http.Redirect(w, r, fmt.Sprintf("/widgets/%d", id), http.StatusFound)
 }
 
 func (h *Handler) handleWidgetEdit(w http.ResponseWriter, r *http.Request) {
+	id, _ := strconv.Atoi(chi.URLParam("id"))
+	widget, err := h.WidgetService.FindWidget(r.Context(), id)
+	if err != nil {
+		Error(w, r, err)
+		return
+	}
 
+	tmpl := WidgetEditTemplate{Widget: widget}
+	tmpl.Render(w, r)
 }
 
 func (h *Handler) handleWidgetUpdate(w http.ResponseWriter, r *http.Request) {
+	id, _ := strconv.Atoi(chi.URLParam("id"))
 
+	upd := &tinyego.Widget{}
+	upd.Name = tinyego.String(r.PostFormValue("name"))
+	upd.Size = tinyego.String(r.PostFormValue("size"))
+
+	widget, err := h.WidgetService.UpdateWidget(r.Context(), id, upd)
+	if err != nil {
+		tmpl := WidgetEditTemplate{Widget: widget, Err: Err}
+		tmpl.Render(w, r)
+		return
+	}
+
+	http.Redirect(w, r, fmt.Sprintf("/widgets/%d", id), http.StatusFound)
 }

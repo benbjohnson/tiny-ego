@@ -2,6 +2,15 @@
 
 
 [[projects]]
+  name = "github.com/go-chi/chi"
+  packages = [
+    ".",
+    "middleware"
+  ]
+  revision = "e83ac2304db3c50cf03d96a2fcd39009d458bc35"
+  version = "v3.3.2"
+
+[[projects]]
   branch = "master"
   name = "go4.org"
   packages = ["strutil"]
@@ -10,6 +19,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8243bb26462d0b501a53633681915154b843ec298ca37a6244fbeac9c637e85c"
+  inputs-digest = "c5210460da22b032a7ab6ddba84e4692ff60bbe588ea0e92acd8f77f2364d598"
   solver-name = "gps-cdcl"
   solver-version = 1
